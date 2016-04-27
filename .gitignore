@@ -1,0 +1,14 @@
+.DS_Store
+.idea/
+.project
+.buildpath
+.settings
+*.log
+var/
+www/tmpfile/
+*.beam
+erl_crash.dump
+*.tags
+uploads/
+log
+*.dets
