@@ -12,9 +12,15 @@ class Auth_Admin
     public function __construct()
     {
         $db = DB::getInstance();
+        HyCrypt::setKey(AES_SECRET_KEY);
+        HyCrypt::setIv(AES_IV_KEY);
+        $req_data = HyCrypt::aesDecrypt(Jec::getVar('arg'));
+        $req_data = json_decode($req_data, TRUE);
+//         $req_json = 
         
-        $game_id = Jec::getInt('game_id');
-        $partner_id = Jec::getInt('partner_id');
+        
+        $game_id = (int)$req_data['game_id'];
+        $partner_id = (int)$req_data['partner_id'];
         
         if (empty($game_id) || empty($partner_id)) {
             exit(json_encode(array('state' => 2, 'data' => 'game_id can not be empty!')));
@@ -33,9 +39,9 @@ class Auth_Admin
             exit(json_encode(array('state' => 3, 'data' => 'class file not exists!')));
         }
         
-        $row['session'] = Jec::getVar('session');
+        $row['session'] = $req_data['session'];
 //         $row['sign'] = Jec::getVar('sign');
-        $row['uid'] = Jec::getVar('uid');
+        $row['uid'] = $req_data['uid'];
         
         $auther = new $channel_class($row);
     }

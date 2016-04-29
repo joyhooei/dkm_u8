@@ -3,7 +3,7 @@
 
 //数据库配置
 $CONFIG['db'] = array(
-    'host' => 'localhost',
+    'host' => '127.0.0.1',
     'user' => 'root',
     'pwd' => 'test',
     'port' => 3306,
@@ -14,7 +14,7 @@ $CONFIG['db'] = array(
 );
 
 $CONFIG['redis'] = array(
-	'host' => 'localhost',
+	'host' => '127.0.0.1',
     'port' => 6379,
 );
 
